@@ -1,10 +1,12 @@
 extern crate collections;
 extern crate test;
 
-use std::collections::{RingBuf, TreeSet};
+use std::collections::{RingBuf, BTreeSet};
 use std::io;
 use std::os;
 use std::rc::Rc;
+
+type Set = BTreeSet<Rc<String>>;
 
 struct History {
     q: RingBuf<Rc<String>>,
@@ -19,7 +21,7 @@ impl History {
         }
     }
 
-    fn push(&mut self, s: Rc<String>, map: &mut TreeSet<Rc<String>>) {
+    fn push(&mut self, s: Rc<String>, map: &mut Set) {
         self.q.push_back(s);
         if self.q.len() > self.max_size {
             match self.q.pop_front() {
@@ -31,17 +33,17 @@ impl History {
 }
 
 #[inline(never)]
-fn insert(map: &mut TreeSet<Rc<String>>, e: Rc<String>) {
+fn insert(map: &mut Set, e: Rc<String>) {
     map.insert(e);
 }
 
 #[inline(never)]
-fn remove(map: &mut TreeSet<Rc<String>>, e: &Rc<String>) {
+fn remove(map: &mut Set, e: &Rc<String>) {
     map.remove(e);
 }
 
 #[inline(never)]
-fn contains(map: &TreeSet<Rc<String>>, e: &Rc<String>) -> bool {
+fn contains(map: &Set, e: &Rc<String>) -> bool {
     map.contains(e)
 }
 
