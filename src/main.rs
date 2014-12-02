@@ -47,13 +47,14 @@ fn contains(map: &Set, e: &Rc<String>) -> bool {
     map.contains(e)
 }
 
-const HISTORY_SIZE: uint = 4096;
+const HISTORY_SIZE: uint = 409600;
 const CONTAINS_LOOPS: uint = 2;
 
 fn main() {
     let mut f = io::BufferedReader::new(io::File::open(&Path::new(os::args()[1].clone())).unwrap());
 
-    let mut map = TreeSet::new();
+    //let mut map = TreeSet::new();
+    let mut map = BTreeSet::with_b(2);
     // TODO: all of these will be in cache.
     let mut hist = History::new(HISTORY_SIZE);
 
