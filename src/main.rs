@@ -1,12 +1,12 @@
 extern crate collections;
 extern crate test;
 
-use std::collections::{RingBuf, BTreeSet};
+use std::collections::{RingBuf, BTreeSet, TreeSet};
 use std::io;
 use std::os;
 use std::rc::Rc;
 
-type Set = BTreeSet<Rc<String>>;
+type Set = TreeSet<Rc<String>>;
 
 struct History {
     q: RingBuf<Rc<String>>,
@@ -53,8 +53,8 @@ const CONTAINS_LOOPS: uint = 2;
 fn main() {
     let mut f = io::BufferedReader::new(io::File::open(&Path::new(os::args()[1].clone())).unwrap());
 
-    //let mut map = TreeSet::new();
-    let mut map = BTreeSet::with_b(2);
+    let mut map = TreeSet::new();
+    //let mut map = BTreeSet::new();
     // TODO: all of these will be in cache.
     let mut hist = History::new(HISTORY_SIZE);
 
