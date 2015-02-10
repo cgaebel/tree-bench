@@ -37,3 +37,10 @@ opt-level = 0
 debug = true
 rpath = false
 lto = false
+
+[dependencies.collect]
+version = "*"
+
+[dependencies.btree]
+version = "*"
+git = "https://github.com/Gankro/btree-fiddles"
