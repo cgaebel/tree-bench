@@ -1,4 +1,18 @@
 [root]
 name = "tree-bench"
 version = "0.0.1"
+dependencies = [
+ "btree 0.0.1 (git+https://github.com/Gankro/btree-fiddles)",
+ "collect 0.0.20 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "btree"
+version = "0.0.1"
+source = "git+https://github.com/Gankro/btree-fiddles#b1616633bdc6da931b09f2fe28f7f544e7505f2c"
+
+[[package]]
+name = "collect"
+version = "0.0.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 
